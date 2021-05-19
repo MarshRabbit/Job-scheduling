@@ -56,6 +56,8 @@ public class Scheduling {
 
 <img width="293" alt="스크린샷 2021-05-19 오후 9 35 29" src="https://user-images.githubusercontent.com/80511335/118813542-37071080-b8ea-11eb-9bda-6b8cd7b85bd9.png">
 
+이때 시간복잡도는 작업시간을 추가할때마다 기계를 비교해서 마지막 작업시간이 적은곳 에다가 추가해야 하므로 기계를 비교하는 횟수 O(M) x 작업의 수 O(N) 이므로 O(MN)이 된다.
+
 ## 손으로 구한 최적해
 
 ![IMG_57FDCC215A20-1](https://user-images.githubusercontent.com/80511335/118815158-e85a7600-b8eb-11eb-96da-d0c508f7bb57.jpeg)
