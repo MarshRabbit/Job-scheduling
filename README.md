@@ -75,5 +75,91 @@ public class Scheduling {
 
 ## Brute force
 ```java
+public class Scheduling {
+    static int[] soda = new int[500000];
+    static int z;
 
+    public static void combi(int[] arr, boolean[] visited, int depth, int r) {
+        if (r == 0) {
+            sum(arr, visited);
+            return;
+        }
+        if (depth == arr.length) return;
+
+        visited[depth] = true;
+        combi(arr, visited, depth + 1, r -1);
+        visited[depth] = false;
+        combi(arr, visited, depth + 1, r);
+    }
+
+    public static void sum(int[] arr, boolean[] visited) {
+        int[] sum = {0, 0};
+        for (int i = 0; i < arr.length; i++) {
+            if (visited[i])
+                sum[0] += arr[i];
+            else if (!visited[i])
+                sum[1] += arr[i];
+        }
+        soda[z++] = Math.max(sum[0], sum[1]);
+    }
+
+    public static void main(String[] args) {
+        boolean[] visited_4 = {false, false, false, false};
+        boolean[] visited_8 = {false, false, false, false, false, false, false, false};
+        boolean[] visited_16 = {false, false, false, false, false, false, false, false, false,
+                false, false, false, false, false, false, false};
+        int x = 4;
+
+        while (x <= 16) {
+            int[] machine = {0, 0};
+            int num = x; // 작업의 개수
+            int min; // 가장 일찍 끝나는 기계 번호
+
+            int[] t = new int[num]; //작업의 시간을 넣을 배열
+            System.out.println("작업의 개수: "+ x);
+            System.out.print("작업의 시간은 ");
+            for (int i = 0; i < num; i++) {
+                t[i] = (int) (Math.random() * 10) + 1;
+                System.out.print(t[i] + " ");
+            }
+            System.out.println();
+
+            for (int i = 0; i < num; i++) { //작업 배정 반복문
+                min = 0;
+                if (machine[1] < machine[0])
+                    min = 1;
+
+                machine[min] += t[i];
+            }
+
+            System.out.println("근사해는 " + Math.max(machine[0], machine[1]));
+
+            z = 0;
+            if (x == 4) {
+                for (int i = 1; i <= num; i++)
+                    combi(t, visited_4, 0, i);
+            }
+            else if (x == 8) {
+                for (int i = 1; i <= num; i++)
+                    combi(t, visited_8, 0, i);
+            }
+            else if (x == 16) {
+                for (int i = 1; i <= num; i++)
+                    combi(t, visited_16, 0, i);
+            }
+
+            int mini = 99999999;
+            for (int i = 0; i < Math.pow(2, x)-1; i++) {
+                if (soda[i] < mini)
+                    mini = soda[i];
+            }
+
+            System.out.println("최적해는 " + mini + "\n");
+
+            x = x*2;
+        }
+
+    }
+}
 ```
+<img width="382" alt="스크린샷 2021-05-20 오전 12 27 42" src="https://user-images.githubusercontent.com/80511335/118840252-324e5680-b902-11eb-9518-b74782ed4ad6.png">
