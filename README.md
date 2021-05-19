@@ -55,3 +55,11 @@ public class Scheduling {
 ```
 
 <img width="293" alt="스크린샷 2021-05-19 오후 9 35 29" src="https://user-images.githubusercontent.com/80511335/118813542-37071080-b8ea-11eb-9bda-6b8cd7b85bd9.png">
+
+## 손으로 구한 최적해
+
+![IMG_57FDCC215A20-1](https://user-images.githubusercontent.com/80511335/118815158-e85a7600-b8eb-11eb-96da-d0c508f7bb57.jpeg)
+
+## 근사 비율
+
+
