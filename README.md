@@ -71,3 +71,9 @@ public class Scheduling {
 ![118807825-bc3af700-b8e3-11eb-814c-fb66d0ff89f6](https://user-images.githubusercontent.com/80511335/118817982-c8788180-b8ee-11eb-91bf-3b286cadd1a9.jpg)
 
 결국 OPT' <= 2OPT로 근사해는 최적해의 두배를 넘지 않는다
+
+
+## Brute force
+```java
+
+```
