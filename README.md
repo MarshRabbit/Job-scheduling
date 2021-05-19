@@ -62,4 +62,10 @@ public class Scheduling {
 
 ## 근사 비율
 
+최적해를 OPT, 근사해를 OPT' 이라고 하고 작업 i가 시간 T 직후에 배정된다 하면 모든 작업이 T + t<sub>i</sub> 에 종료된다.
 
+그러므로 OPT' = T + t<sub>i</sub> 이고 T'가 작업 i를 제외한 평균 종료시간이면  T <= T'이 된다. 이 관계를 OPT'와 OPT로 나타내면
+
+![118807825-bc3af700-b8e3-11eb-814c-fb66d0ff89f6](https://user-images.githubusercontent.com/80511335/118817982-c8788180-b8ee-11eb-91bf-3b286cadd1a9.jpg)
+
+결국 OPT' <= 2OPT로 근사해는 최적해의 두배를 넘지 않는다
