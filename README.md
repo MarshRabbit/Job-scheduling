@@ -18,4 +18,40 @@
 
 ## 자바 코드
 ```java
+public class Scheduling {
+    private void greedy() {
+        int x = 2;
+        while (x<6) {
+            int[] machine = {0, 0};
+            int num = x; // 작업의 개수
+            int min; // 가장 일찍 끝나는 기계 번호
 
+            int[] n = new int[num]; //작업의 시간을 넣을 배열
+            System.out.println("작업의 개수: "+ x);
+            System.out.print("작업의 시간은 ");
+            for (int i = 0; i < num; i++) {
+                n[i] = (int) (Math.random() * 10) + 1;
+                System.out.print(n[i] + " ");
+            }
+            System.out.println();
+
+            for (int i = 0; i < num; i++) { //작업 배정 반복문
+                min = 0;
+                if (machine[1] < machine[0])
+                    min = 1;
+
+                machine[min] += n[i];
+            }
+
+            System.out.println(machine[0] + " " + machine[1]+ "\n");
+            x++;
+        }
+    }
+    public static void main(String[] args) {
+        Scheduling scheduling = new Scheduling();
+        scheduling.greedy();
+    }
+}
+```
+
+<img width="293" alt="스크린샷 2021-05-19 오후 9 35 29" src="https://user-images.githubusercontent.com/80511335/118813542-37071080-b8ea-11eb-9bda-6b8cd7b85bd9.png">
