@@ -76,7 +76,7 @@ public class Scheduling {
 ## Brute force
 ```java
 public class Scheduling {
-    static int[] soda = new int[500000];
+    static int[] soda = new int[40000];
     static int z;
 
     public static void combi(int[] arr, boolean[] visited, int depth, int r) {
@@ -116,7 +116,7 @@ public class Scheduling {
             int min; // 가장 일찍 끝나는 기계 번호
 
             int[] t = new int[num]; //작업의 시간을 넣을 배열
-            System.out.println("작업의 개수: "+ x);
+            System.out.println("작업의 개수: "+ num);
             System.out.print("작업의 시간은 ");
             for (int i = 0; i < num; i++) {
                 t[i] = (int) (Math.random() * 10) + 1;
@@ -135,21 +135,25 @@ public class Scheduling {
             System.out.println("근사해는 " + Math.max(machine[0], machine[1]));
 
             z = 0;
-            if (x == 4) {
-                for (int i = 1; i <= num; i++)
-                    combi(t, visited_4, 0, i);
-            }
-            else if (x == 8) {
-                for (int i = 1; i <= num; i++)
-                    combi(t, visited_8, 0, i);
-            }
-            else if (x == 16) {
-                for (int i = 1; i <= num; i++)
-                    combi(t, visited_16, 0, i);
+            switch (num) {
+                case 4:
+                    for (int i = 1; i <= num/2; i++)
+                        combi(t, visited_4, 0, i);
+                    break;
+
+                case 8:
+                    for (int i = 1; i <= num/2; i++)
+                        combi(t, visited_8, 0, i);
+                    break;
+
+                case 16:
+                    for (int i = 1; i <= num/2; i++)
+                        combi(t, visited_16, 0, i);
+                    break;
             }
 
             int mini = 99999999;
-            for (int i = 0; i < Math.pow(2, x)-1; i++) {
+            for (int i = 0; i < Math.pow(2, x-1)-1; i++) {
                 if (soda[i] < mini)
                     mini = soda[i];
             }
@@ -158,8 +162,15 @@ public class Scheduling {
 
             x = x*2;
         }
-
     }
 }
+
 ```
 <img width="382" alt="스크린샷 2021-05-20 오전 12 27 42" src="https://user-images.githubusercontent.com/80511335/118840252-324e5680-b902-11eb-9518-b74782ed4ad6.png">
+
+이때 시간복잡도는 스털링 수를 통하여 모든 작업의 조합을 구하려면 2<sup>n-1</sup>-1 만큼의 조합이 나오므로 O(2<sup>n</sup>) 시간이 걸린다.
+
+그리고 나온 조합에서 마지막 작업시간을 구하려면 작업시간이 담긴 배열에서 시간을 가져와야 하므로 O(n) 시간이 걸리므로 가능할수있는 모든 마지막 종료시간을 구하려면 O(2<sup>n</sup>)xO(n)=O(2<sup>n</sup>) 시간이 걸린다.
+
+그 후에 모든 종료시간에서 최저값을 구해야 하므로 2<sup>n-1</sup>-1 만큼의 수를 봐야한다. 그러므로 O(2<sup>n</sup>)의 시간이 걸리고 최종적으로 O(2<sup>n</sup>) + O(2<sup>n</sup>) = O(2<sup>n</sup>)의 시간복잡도가 나온다
+
